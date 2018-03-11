@@ -4,7 +4,7 @@ import cvxopt
 
 def quadprog(H, f, L=None, k=None, Aeq=None, beq=None, lb=None, ub=None):
     """
-    input: Numpy arrays, the format follows MATLAB quadprog function: https://www.mathworks.com/help/optim/ug/quadprog.html
+    Input: Numpy arrays, the format follows MATLAB quadprog function: https://www.mathworks.com/help/optim/ug/quadprog.html
     Output: Numpy array of the solution
     """
     n_var = H.shape[1]
