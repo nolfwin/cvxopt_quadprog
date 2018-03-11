@@ -9,8 +9,8 @@ def quadprog(H, f, L=None, k=None, Aeq=None, beq=None, lb=None, ub=None):
     """
     n_var = H.shape[1]
 
-    P = cvxopt.matrix(H)
-    q = cvxopt.matrix(f)
+    P = cvxopt.matrix(H, tc='d')
+    q = cvxopt.matrix(f, tc='d')
 
     if L is not None or k is not None:
         assert(k is not None and L is not None)
@@ -22,13 +22,13 @@ def quadprog(H, f, L=None, k=None, Aeq=None, beq=None, lb=None, ub=None):
             L = np.vstack([L, np.eye(n_var)])
             k = np.vstack([k, ub])
 
-        L = cvxopt.matrix(L)
-        k = cvxopt.matrix(k)
+        L = cvxopt.matrix(L, tc='d')
+        k = cvxopt.matrix(k, tc='d')
 
     if Aeq is not None or beq is not None:
         assert(Aeq is not None and beq is not None)
-        Aeq = cvxopt.matrix(Aeq)
-        beq = cvxopt.matrix(beq)
+        Aeq = cvxopt.matrix(Aeq, tc='d')
+        beq = cvxopt.matrix(beq, tc='d')
 
     sol = cvxopt.solvers.qp(P, q, L, k, Aeq, beq)
 
